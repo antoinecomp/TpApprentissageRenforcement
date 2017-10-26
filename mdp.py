@@ -2,6 +2,7 @@ import numpy as np
 
 # on crée un tableau a trois dimensions
 P = nP.zeros(shape=(256,5,256), dtype = float)
+R = np.zeros(shape=(265,5,256),dtypefloat)
 
 def action(nombreMouvement):
     # tirer une action au hasard
@@ -25,6 +26,8 @@ def action(nombreMouvement):
         # ramasse
         a = 4
         r = ramasse()
+        lieu = etat()
+        R = [lieu,r]
 
 while True :
     # enregistre l'état
@@ -34,4 +37,5 @@ while True :
     s_prime = etat()
     a = nombreAleatoire
     P[s,a,s_prime] = P[s,a,s_prime] + 1
+    P[s,a]=P[s,a,:]/sum(P[s,a,:])
     
